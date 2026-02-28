@@ -29,38 +29,28 @@ export function SectionAnimations() {
         { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%' } }
       )
     })
-
     gsap.fromTo('.td-highlight',
       { opacity: 0, scale: 0.8, y: 20 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'back.out(1.3)',
-        scrollTrigger: { trigger: '.td-highlights-grid', start: 'top 85%' } }
+      { opacity: 1, scale: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'back.out(1.3)', scrollTrigger: { trigger: '.td-highlights-grid', start: 'top 85%' } }
     )
-
     gsap.utils.toArray<Element>('.td-itinerary-step').forEach((el, i) => {
       gsap.fromTo(el,
         { opacity: 0, x: i % 2 === 0 ? -30 : 30 },
         { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%' } }
       )
     })
-
     gsap.fromTo('.td-include-card',
       { opacity: 0, y: 30, scale: 0.97 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.15, ease: 'power2.out',
-        scrollTrigger: { trigger: '.td-include-card', start: 'top 85%' } }
+      { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.15, ease: 'power2.out', scrollTrigger: { trigger: '.td-include-card', start: 'top 85%' } }
     )
-
     gsap.fromTo('.td-safety-tip',
       { opacity: 0, x: -20 },
-      { opacity: 1, x: 0, duration: 0.5, stagger: 0.08,
-        scrollTrigger: { trigger: '.td-safety-section', start: 'top 85%' } }
+      { opacity: 1, x: 0, duration: 0.5, stagger: 0.08, scrollTrigger: { trigger: '.td-safety-section', start: 'top 85%' } }
     )
-
     gsap.fromTo('.td-sidebar',
       { opacity: 0, x: 40, scale: 0.97 },
-      { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: 'power2.out',
-        scrollTrigger: { trigger: '.td-sidebar', start: 'top 80%' } }
+      { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: 'power2.out', scrollTrigger: { trigger: '.td-sidebar', start: 'top 80%' } }
     )
-
     return () => { ScrollTrigger.getAll().forEach(t => t.kill()) }
   }, [])
   return null
@@ -68,22 +58,18 @@ export function SectionAnimations() {
 
 export function ParallaxStars() {
   const ref = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     if (!ref.current) return
     const container = ref.current
     const stars: HTMLDivElement[] = []
     const animations: gsap.core.Tween[] = []
-
     for (let i = 0; i < 80; i++) {
       const s = document.createElement('div')
       s.style.cssText = `position:absolute;border-radius:50%;background:white;pointer-events:none;width:${Math.random() * 2 + 0.5}px;height:${Math.random() * 2 + 0.5}px;left:${Math.random() * 100}%;top:${Math.random() * 100}%;opacity:${Math.random() * 0.6 + 0.1}`
       container.appendChild(s)
       stars.push(s)
-      const anim = gsap.to(s, { opacity: Math.random() * 0.8 + 0.1, duration: Math.random() * 3 + 1.5, repeat: -1, yoyo: true, delay: Math.random() * 2 })
-      animations.push(anim)
+      animations.push(gsap.to(s, { opacity: Math.random() * 0.8 + 0.1, duration: Math.random() * 3 + 1.5, repeat: -1, yoyo: true, delay: Math.random() * 2 }))
     }
-
     const shoot = () => {
       if (!container) return
       const ss = document.createElement('div')
@@ -94,15 +80,12 @@ export function ParallaxStars() {
         .to(ss, { x: -120, y: 50, opacity: 0, duration: 0.7, ease: 'power1.in' })
         .call(() => { if (ss.parentNode) ss.remove() })
     }
-
     const interval = setInterval(shoot, 2800)
-
     return () => {
       clearInterval(interval)
       animations.forEach(a => a.kill())
       stars.forEach(s => { if (s.parentNode) s.remove() })
     }
   }, [])
-
   return <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none" />
 }

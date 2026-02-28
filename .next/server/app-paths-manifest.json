@@ -1,0 +1,6 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/tours/desert-safari/page": "app/tours/desert-safari/page.js",
+  "/tours/desert-safari/[slug]/page": "app/tours/desert-safari/[slug]/page.js"
+}

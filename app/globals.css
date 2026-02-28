@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500;600;700&display=swap');
+
+:root { --gold:#C9953A; --gold-lt:#E8B86D; --ember:#B84420; --cream:#FAF5EC; --night:#080C16; --ink:#1A1208; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--cream); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--cream)} ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+.gold-text{background:linear-gradient(135deg,#C9953A,#B84420);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+@keyframes twk{from{opacity:.05}to{opacity:.9}}
+@keyframes shoot{0%{transform:translate(0,0) rotate(-28deg) scaleX(0);opacity:0}5%{opacity:1;transform:translate(0,0) rotate(-28deg) scaleX(1)}30%{opacity:0;transform:translate(-50vw,22vh) rotate(-28deg) scaleX(1)}100%{opacity:0}}
+@keyframes moon-float{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+@keyframes wa-pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}50%{box-shadow:0 0 0 10px rgba(37,211,102,0)}}
+@keyframes shimmer{from{background-position:-200% 0}to{background-position:200% 0}}
+.moon-float{animation:moon-float 7s ease-in-out infinite alternate}
+.wa-pulse{animation:wa-pulse 2.2s ease-in-out infinite}
+.card-lift{transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease}
+.card-lift:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(26,18,8,.12)}
+.shimmer-btn{background-size:200% 100%;animation:shimmer 3s linear infinite}

@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/shared/WhatsAppButton'
+import { LangProvider } from '@/context/LangContext'
 
 const playfair = Playfair_Display({ subsets:['latin'], variable:'--font-playfair', display:'swap' })
 const jost = Jost({ subsets:['latin'], variable:'--font-jost', display:'swap' })
@@ -19,10 +20,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${jost.variable}`}>
       <body style={{fontFamily:"var(--font-jost,'Jost',sans-serif)"}}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        <LangProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <WhatsAppButton />
+        </LangProvider>
       </body>
     </html>
   )
